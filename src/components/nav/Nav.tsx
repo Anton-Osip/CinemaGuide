@@ -6,10 +6,10 @@ export const Nav: React.FC = () => {
         <s.Nav>
             <s.NavList>
                 <li>
-                    <s.Link href = "/home">Главная</s.Link>
+                    <s.Link to = "/CinemaGuide/main">Главная</s.Link>
                 </li>
                 <li>
-                    <s.Link href = "/Genres">Жанры</s.Link>
+                    <s.Link to = "/CinemaGuide/genres">Жанры</s.Link>
                 </li>
             </s.NavList>
             <Search/>
