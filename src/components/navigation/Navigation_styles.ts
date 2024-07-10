@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import {font} from '../../styles/Common'
 import {NavLink} from "react-router-dom";
+import {font} from "../../styles/Common";
 import {theme} from "../../styles/Theme";
 
 const Nav = styled.nav`
@@ -11,14 +11,15 @@ const Nav = styled.nav`
     max-width: 811px;
     flex-grow: 1;
 `
-
-const NavList = styled.ul`
+const List = styled.ul`
     display: flex;
     align-items: center;
     gap: 40px;
 `
+const Item = styled.li`
 
-const Link = styled (NavLink) `
+`
+const Link = styled(NavLink)`
     ${font({
         weight: 400,
         Fmax: 24,
@@ -50,9 +51,18 @@ const Link = styled (NavLink) `
         color: ${theme.colors.hoverColor};
     }
 
+    @media ${theme.media.tablet} {
+        width: 24px;
+        height: 24px;
+        .active& > svg {
+            fill: ${theme.colors.hoverColor};
+        }
+
+        &:before {
+            display: none
+        }
+    }
 `
 
 
-
-
-export const s = {Nav, NavList, Link}
+export const s = {Nav, List, Item, Link}

@@ -1,26 +1,19 @@
-import styled from "styled-components";
-import {font} from "../../styles/Common";
-import {theme} from "../../styles/Theme";
+import {s} from "./Auth_styles";
+import {Icon} from "../icon/Icon";
+import React from "react";
 
-export const Auth: React.FC = () => {
+type AuthPropsType = {
+    windowIsDesktop: boolean
+}
+
+export const Auth: React.FC<AuthPropsType> = ({windowIsDesktop}: AuthPropsType) => {
     return (
-        <StyledAuth>
-            Войти
-        </StyledAuth>
+
+        <s.Auth>
+            {windowIsDesktop ? 'Войти' :
+                <Icon idIcon = {'authIcon'} width = "24" height = "24"
+                      viewBox = "0 0 24 24" color = "#fff"/>}
+        </s.Auth>
     )
 }
 
-const StyledAuth = styled.button`
-    ${font({
-        weight: 400,
-        Fmax: 24,
-        Fmin: 24,
-        lineHeight: 1.3,
-    })}
-    transition: ${theme.animations.transition};
-    cursor: pointer;
-
-    &:hover {
-        color: ${theme.colors.hoverColor};
-    }
-`

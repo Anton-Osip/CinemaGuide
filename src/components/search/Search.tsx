@@ -1,13 +1,12 @@
 import {s} from "./Search_styles"
 import React, {ChangeEvent, useState} from "react";
-import {SearchList} from "../searchList/SearchList";
-import {FilmType} from "../../data/films";
+import {Icon} from "../icon/Icon";
 
 type SearchPropsType = {
-    films: FilmType[]
+    windowIsDesktop?: boolean
 }
 
-export const Search: React.FC<SearchPropsType> = ({films}: SearchPropsType) => {
+export const Search: React.FC<SearchPropsType> = ({windowIsDesktop}: SearchPropsType) => {
     const [isSuggests, setIsSuggests] = useState(false)
     const [text, setText] = useState('')
 
@@ -21,15 +20,21 @@ export const Search: React.FC<SearchPropsType> = ({films}: SearchPropsType) => {
         setIsSuggests(false)
     }
 
-    const topFiveFilms = films.filter((_, id) => id < 5)
-
 
     return (
-        <s.Form>
-            <s.Input placeholder = "Поиск" type = "text" value = {text} onChange = {onChangeHandler}
-                     isSuggests = {isSuggests}/>
-            {isSuggests && <s.Button type = {'reset'} onClick = {resetText}></s.Button>}
-            {text && topFiveFilms && <SearchList films = {topFiveFilms}/>}
-        </s.Form>
+        <>
+            {
+                windowIsDesktop ?
+                    <s.Form>
+                        <s.Input placeholder = "Поиск" type = "text" value = {text} onChange = {onChangeHandler}
+                                 isSuggests = {isSuggests}/>
+                        {isSuggests && <s.Button type = {'reset'} onClick = {resetText}></s.Button>}
+                    </s.Form>
+                    :
+                    <Icon idIcon = "searchIcon" width = "24" height = "24" viewBox = "0 0 24 24" color = {'#fff'}/>
+            }
+        </>
+
+
     )
 }

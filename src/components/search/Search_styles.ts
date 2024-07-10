@@ -4,7 +4,7 @@ import search from '../../assets/image/searchIcon.svg'
 import {theme} from "../../styles/Theme";
 
 const Form = styled.form`
-    max-width: 496px;
+    max-width: 559px;
     flex-grow: 1;
     display: flex;
     position: relative;
@@ -14,7 +14,7 @@ const Input = styled.input<{ isSuggests?: boolean }>`
     outline: none;
     border: 0;
     border-radius: 8px;
-    background:${theme.colors.secondaryBg} url(${search}) no-repeat 16px center;
+    background: ${theme.colors.secondaryBg} url(${search}) no-repeat 16px center;
     padding: 16px 16px 16px 52px;
     width: 100%;
     ${font({Fmax: 18, Fmin: 18})}

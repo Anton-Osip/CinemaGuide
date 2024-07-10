@@ -1,10 +1,10 @@
+import {s} from "./Logo_styles"
 import logo from '../../assets/image/logo.svg'
-import {NavLink} from "react-router-dom";
 
-export const Logo: React.FC = () => {
+export const Logo: React.FC<{}> = () => {
     return (
-        <NavLink to = "/CinemaGuide/main">
-            <img src = {logo} alt = "Cinema guide logo"/>
-        </NavLink>
+        <s.Link to = {'cinemaGuide/home'}>
+            <s.Image src = {logo} alt = "CinemaGuide"/>
+        </s.Link>
     )
 }
