@@ -1,77 +1,35 @@
 import {s} from "./Search_styles"
-import {ChangeEvent, useEffect, useState} from "react";
-import axios from "axios";
+import React, {ChangeEvent, useState} from "react";
 import {SearchList} from "../searchList/SearchList";
+import {FilmType} from "../../data/films";
 
-export type FilmType = {
-    awardsSummary: string | null
-    backdropUrl: string | null
-    budget:string|null
-    cast:string[]
-    countriesOfOrigin: string[]
-    director:string
-    genres:string[]
-    homepage:string
-    id:number
-    keywords:string[]
-    language:string
-    languages:string[]
-    originalTitle:string
-    plot:string
-    posterUrl:string
-    productionstring:string | null
-    releaseDate:string
-    releaseYear:number
-    revenue:null
-    runtime:number
-    searchL:string
-    status:string
-    title:string
-    tmdbRating:number
-    trailerUrl:string
-    trailerYouTubeId:string
+type SearchPropsType = {
+    films: FilmType[]
 }
 
-export const Search: React.FC = () => {
+export const Search: React.FC<SearchPropsType> = ({films}: SearchPropsType) => {
     const [isSuggests, setIsSuggests] = useState(false)
     const [text, setText] = useState('')
-    const [films, setFilms] = useState<FilmType[]>([])
 
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => setText(e.currentTarget.value)
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        setText(e.currentTarget.value)
+        setIsSuggests(true)
+        if (e.currentTarget.value === '') setIsSuggests(false)
+    }
     const resetText = () => {
         setText('')
+        setIsSuggests(false)
     }
 
-    const axiosRequest = () => {
-        axios.get(`https://cinemaguide.skillbox.cc/movie?title=${text}`)
-            .then((res: any) => {
-                if (res.data.length > 4) {
-                    const topFive:FilmType[] = res.data.filter((f: any, id: number) => id < 5)
-                    console.log(topFive)
-                    setFilms(topFive)
+    const topFiveFilms = films.filter((_, id) => id < 5)
 
-                } else {
-                    setFilms(res.Data)
-                }
-            })
-    }
-
-    useEffect(() => {
-        if (text !== '') {
-            setIsSuggests(true)
-            axiosRequest()
-        } else {
-            setIsSuggests(false)
-        }
-
-    }, [text])
 
     return (
         <s.Form>
             <s.Input placeholder = "Поиск" type = "text" value = {text} onChange = {onChangeHandler}
                      isSuggests = {isSuggests}/>
             {isSuggests && <s.Button type = {'reset'} onClick = {resetText}></s.Button>}
-            {text && films && <SearchList films={films}/>}
+            {text && topFiveFilms && <SearchList films = {topFiveFilms}/>}
         </s.Form>
     )
 }

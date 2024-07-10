@@ -10,7 +10,7 @@ const Header = styled.header`
     backdrop-filter: blur(20px);
     background: rgba(0, 0, 0, 0.5);
 
-    & ${FlexWrapper} {
+    & > ${FlexWrapper} {
         gap: 20px;
     }
 `

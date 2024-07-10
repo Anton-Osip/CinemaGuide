@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {theme} from "../../styles/Theme";
-import {FilmType} from "../search/Search";
+import {FilmType} from "../../data/films";
+import {SearchItem} from "../searchItem/SearchItem";
 
 type SearchListType = {
     films: FilmType[]
@@ -9,10 +10,7 @@ type SearchListType = {
 export const SearchList: React.FC<SearchListType> = ({films}: SearchListType) => {
 
     return <List>
-        {films.map(f => (
-            <Item key = {f.id}>
-                <Image src = {f.posterUrl} alt = {f.title}/>
-            </Item>)
+        {films.map(film => (<SearchItem key={film.id} film={film} />)
         )}
     </List>
 }
@@ -24,10 +22,4 @@ const List = styled.ul`
     right: 0;
     background-color: ${theme.colors.secondaryBg};
 `
-const Item = styled.li`
-    max-height: 92px;
-`
 
-const Image = styled.img`
-    max-height: 52px;
-`

@@ -3,19 +3,21 @@ import styled from 'styled-components';
 import {Header} from "./layout/header/Header";
 import {Navigate, Route, Routes} from "react-router-dom";
 import {Main} from "./layout/main/Main";
-
+import {films} from './data/films'
 
 function App() {
+
+
     return (
         <div className = "App">
-            <Header/>
+            <Header films = {films}/>
             <Routes>
-                <Route path='/' element={<Navigate to={'/CinemaGuide/main'} />} />
+                <Route path = "/" element = {<Navigate to = {'/CinemaGuide/main'}/>}/>
                 <Route
-                    path='/CinemaGuide'
-                    element={<Navigate to={'/CinemaGuide/home'} />}
+                    path = "/CinemaGuide"
+                    element = {<Navigate to = {'/CinemaGuide/home'}/>}
                 />
-                <Route path='/CinemaGuide/main' element={<Main />} />
+                <Route path = "/CinemaGuide/main" element = {<Main />}/>
 
             </Routes>
         </div>

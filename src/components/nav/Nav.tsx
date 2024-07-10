@@ -1,7 +1,12 @@
 import {s} from "./Nav_styles";
 import {Search} from "../search/Search";
+import {FilmType} from "../../data/films";
 
-export const Nav: React.FC = () => {
+type NavPropsType = {
+    films:FilmType[]
+}
+
+export const Nav: React.FC<NavPropsType> = ({films}:NavPropsType) => {
     return (
         <s.Nav>
             <s.NavList>
@@ -12,7 +17,7 @@ export const Nav: React.FC = () => {
                     <s.Link to = "/CinemaGuide/genres">Жанры</s.Link>
                 </li>
             </s.NavList>
-            <Search/>
+            <Search films={films}/>
         </s.Nav>
     )
 }

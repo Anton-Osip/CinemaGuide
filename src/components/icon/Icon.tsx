@@ -1,4 +1,4 @@
-import IconsSprite from '../../assets/images//icons-sprite.svg'
+import IconsSprite from '../../assets/image/icons-sprite.svg'
 
 type IconPropsType = {
     width?: string
@@ -17,13 +17,13 @@ export const Icon: React.FC<IconPropsType> = ({
                                               }: IconPropsType) => {
     return (
         <svg
-            width={width || '50'}
-            height={height || '50'}
-            viewBox={viewBox || '0 0 50 50'}
-            fill={color || 'none'}
-            xmlns='http://www.w3.org/2000/svg'
+            width = {width || '50'}
+            height = {height || '50'}
+            viewBox = {viewBox || '0 0 50 50'}
+            fill = {color || 'none'}
+            xmlns = "http://www.w3.org/2000/svg"
         >
-            <use xlinkHref={`${IconsSprite}#${idIcon}`} />
+            <use xlinkHref = {`${IconsSprite}#${idIcon}`}/>
         </svg>
     )
 }
