@@ -3,7 +3,7 @@ import logo from '../../assets/image/logo.svg'
 
 export const Logo: React.FC<{}> = () => {
     return (
-        <s.Link to = {'cinemaGuide/home'}>
+        <s.Link to = {'cinemaGuide/main'}>
             <s.Image src = {logo} alt = "CinemaGuide"/>
         </s.Link>
     )
